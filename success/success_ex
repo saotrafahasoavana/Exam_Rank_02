@@ -21,3 +21,5 @@ snake_to_camel
 pgcd
 ft_itoa
 first_word
+rot_13
+do_op

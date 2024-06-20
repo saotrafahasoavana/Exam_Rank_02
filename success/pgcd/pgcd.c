@@ -6,7 +6,7 @@
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:26:15 by saandria          #+#    #+#             */
-/*   Updated: 2024/06/13 11:32:05 by saandria         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:43:48 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ unsigned int	pgcd(unsigned int a, unsigned int b)
 		a = tmp;
 	}
 	return (tmp);
+}
+
+unsigned int	ppcm(unsigned int a, unsigned int b)
+{
+	return ((a * b) / pgcd(a, b));
 }
 
 int	main(int ac, char *av[])

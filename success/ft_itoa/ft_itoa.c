@@ -24,7 +24,7 @@ int	get_len(int n)
 	int	len;
 
 	len = 0;
-	if (n < 0)
+	if (n <= 0)
 		len++;
 	while (n != 0)
 	{

@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot_13.c                                           :+:      :+:    :+:   */
+/*   do_op.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 12:17:39 by saandria          #+#    #+#             */
-/*   Updated: 2024/06/20 12:22:45 by saandria         ###   ########.fr       */
+/*   Created: 2024/06/20 12:24:21 by saandria          #+#    #+#             */
+/*   Updated: 2024/06/20 12:30:31 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 int	main(int ac, char *av[])
 {
-	int	i;
-
-	if (ac == 2)
+	int	a;
+	int	b;
+	int	x;
+	
+	if (ac == 4 && !av[2][1])
 	{
-		i = 0;
-		while (av[1][i])
-		{
-			if ((av[1][i] >= 'a' && av[1][i] <= 'm') || (av[1][i] >= 'A' && av[1][i] <= 'M'))
-				av[1][i] += 13;
-			else if ((av[1][i] >= 'n' && av[1][i] <= 'z') || (av[1][i] >= 'N' && av[1][i] <= 'Z'))
-				av[1][i] -= 13;
-			write(1, &av[1][i], 1);
-			i++;
-		}
+		a = atoi(av[1]);
+		b = atoi(av[3]);
+		if (av[2][0] == '+')
+			x = a + b;
+		else if (av[2][0] == '-')
+			x = a - b;
+		else if (av[2][0] == '*')
+			x = a * b;
+		else if (av[2][0] == '/')
+			x = a / b;
+		else if (av[2][0] == '%')
+			x = a % b;
+		printf("%d", x);
 	}
-	write(1, "\n", 1);
+	printf("\n");
 	return (0);
 }

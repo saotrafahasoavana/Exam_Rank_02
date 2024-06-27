@@ -6,7 +6,7 @@
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:37:17 by saandria          #+#    #+#             */
-/*   Updated: 2024/06/20 14:37:22 by saandria         ###   ########.fr       */
+/*   Updated: 2024/06/21 08:33:20 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,4 @@ int ft_atoi_base(const char *str, int str_base)
         i++;
     }
     return (res * sign);
-}
+}   

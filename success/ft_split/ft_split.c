@@ -1,12 +1,10 @@
-// Passed Moulinette 2019.09.02
-
 #include <stdlib.h>
 
 int		ft_wordlen(char *str)
 {
 	int i = 0;
 	while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-		++i;
+		i++;
 	return (i);
 }
 
@@ -20,7 +18,7 @@ char	*word_dupe(char *str)
 	while (i < len)
 	{
 		word[i] = str[i];
-		++i;
+		i++;
 	}
 	return (word);
 }
@@ -28,16 +26,17 @@ char	*word_dupe(char *str)
 void	fill_words(char **array, char *str)
 {
 	int word_index = 0;
+
 	while (*str == ' ' || *str == '\t' || *str == '\n')
-		++str;
+		str++;
 	while (*str != '\0')
 	{
 		array[word_index] = word_dupe(str);
-		++word_index;
+		word_index++;
 		while (*str != '\0' && *str != ' ' && *str != '\t' && *str != '\n')
-			++str;
+			str++;
 		while (*str == ' ' || *str == '\t' || *str == '\n')
-			++str;
+			str++;
 	}
 }
 
@@ -45,14 +44,14 @@ int		count_words(char *str)
 {
 	int num_words = 0;
 	while (*str == ' ' || *str == '\t' || *str == '\n')
-		++str;
+		str++;
 	while (*str != '\0')
 	{
-		++num_words;
+		num_words++;
 		while (*str != '\0' && *str != ' ' && *str != '\t' && *str != '\n')
-			++str;
+			str++;
 		while (*str == ' ' || *str == '\t' || *str == '\n')
-			++str;
+			str++;
 	}
 	return (num_words);
 }
@@ -69,21 +68,3 @@ char	**ft_split(char *str)
 	fill_words(array, str);
 	return (array);
 }
-
-//-----------------------------------------------------------------
-// #include <stdio.h>
-
-// int		main(void)
-// {
-// 	// char test[] = "\njrS58VHQ	\n   	p70fL		Kx2sRP0So3E4rC9  \n nebpv3J5ousO84Pa1HjUQOImUhjwZpGn	\n \n	X28iT7Ap9 	DIYAF9ZSpKcs0Rcv\n uzO\n		\nZ7zjEeonALOKQF5xq	\n   \nQxp0b1ufFKGJ	\n2n8R9zUvZEtOwmqf\n	";
-// 	char test[] = "DIYAF9ZSpKcs0Rcv \n uzO\n		\nZ7zjEeonALOKQF5xq	\n   \nQxp0b1ufFKGJ	\n2n8R9zUvZEtOwmqf\n	";
-
-// 	char **arr = ft_split(test);
-
-// 	int i = 0;
-// 	while (arr[i] != 0)
-// 	{
-// 		printf("[%s]\n", arr[i]);
-// 		++i;
-// 	}
-// }

@@ -17,9 +17,17 @@ unsigned char	reverse_bits(unsigned char octet)
 	return (res);
 }
 
+void	print(unsigned char c)
+{
+	int	i = 7;
+	char	bit;
+
+	
+}
+
 int	main(void)
 {
-	char	c = reverse_bits('p');
+	char	c = reverse_bits('2');
 	int	i = 7;
 	char	bit;
 

@@ -1,26 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/01 11:38:53 by saandria          #+#    #+#             */
+/*   Updated: 2024/07/01 11:43:00 by saandria         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "list.h"
 
-void	swap_values(t_list *a, t_list *b)
+void	ft_swap(t_list *a, t_list *b)
 {
-	int swap = a->data;
+	int	tmp;
+
+	tmp = a->data;
 	a->data = b->data;
-	b->data = swap;
+	b->data = tmp;
 }
 
 t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 {
-	int swapped = 1;
-	t_list *cur = lst;
+	t_list	*cur;
+	int	s;
 
-	while (swapped == 1)
+	cur = lst;
+	s = 1;
+	while (s == 1)
 	{
-		swapped = 0;
-		while (cur != 0 && cur->next != 0)
+		s = 0;
+		while(cur && cur->next)
 		{
 			if (cmp(cur->data, cur->next->data) == 0)
 			{
-				swap_values(cur, cur->next);
-				swapped = 1;
+				ft_swap(cur, cur->next);
+				s = 1;
 			}
 			cur = cur->next;
 		}

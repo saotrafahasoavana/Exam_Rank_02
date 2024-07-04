@@ -5,56 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:42:06 by saandria          #+#    #+#             */
-/*   Updated: 2024/06/13 13:54:10 by saandria         ###   ########.fr       */
+/*   Created: 2024/07/04 22:12:30 by saandria          #+#    #+#             */
+/*   Updated: 2024/07/04 22:12:33 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int	is_prime(unsigned int n)
+int		is_prime(int n)
 {
-	int	i;
+	int i = 2;
 
-	i = 2;
-	while (i < n / 2)
+	while (i < n)
 	{
 		if (n % i == 0)
 			return (0);
-		i++;
+		++i;
 	}
 	return (1);
 }
 
-int	main(int ac, char *av[])
+void	fprime(char *str)
 {
-	int	factor;
-	int	first;
-	unsigned int	n;
+	int n = atoi(str);
+	int factor = 2;
+	int first = 1;
 
-	if(ac == 2)
+	if (n == 1)
+		printf("1");
+
+	while (factor <= n)
 	{
-		n = atoi(av[1]);
-		if (n == 1)
-			printf("%d", 1);
-		factor = 2;
-		first = 1;
-		while(factor <= n)
+		if (n % factor == 0 && is_prime(factor))
 		{
-			if (n % factor == 0 && is_prime(factor))
-			{
-				if (first == 1)
-					printf("%d", factor);
-				else
-					printf("*%d", factor);
-				first = 0;
-				n = n / factor;
-			}
+			if (first == 1)
+				printf("%d", factor);
 			else
-				factor++;
+				printf("*%d", factor);
+			first = 0;
+			n = n / factor;
 		}
+		else
+			++factor;
 	}
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 2)
+		fprime(argv[1]);
+
 	printf("\n");
-	return(0);
+	return (0);
 }

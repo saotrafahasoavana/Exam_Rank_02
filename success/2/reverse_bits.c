@@ -22,19 +22,18 @@ void	print(unsigned char c)
 	int	i = 7;
 	char	bit;
 
+	while (i >= 0)
+	{
+		bit = ((c >> i) & 1) + 48;
+		write(1, &bit, 1);
+		i--;
+	}
 	
 }
 
 int	main(void)
 {
 	char	c = reverse_bits('2');
-	int	i = 7;
-	char	bit;
 
-	while (i >= 0)
-	{
-		bit = ((c >> i) & 1) + 48;
-		write(1, &bit, 1);
-		i--;
-	}	
+	print(c);
 }

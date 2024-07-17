@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pgcd.c                                             :+:      :+:    :+:   */
+/*   lcm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 11:26:15 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/10 10:43:19 by saandria         ###   ########.fr       */
+/*   Created: 2024/07/10 10:31:21 by saandria          #+#    #+#             */
+/*   Updated: 2024/07/10 11:09:36 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-
-unsigned int	pgcd(unsigned int a, unsigned int b)
+unsigned int    pgcd(unsigned int a, unsigned int b)
 {
 	unsigned int	tmp;
-	
-	tmp = 0;
+
 	while (b != 0)
 	{
 		tmp = b;
@@ -27,17 +23,26 @@ unsigned int	pgcd(unsigned int a, unsigned int b)
 	return (tmp);
 }
 
-unsigned int	ppcm(unsigned int a, unsigned int b)
+unsigned int    lcm(unsigned int a, unsigned int b)
 {
-	return ((a * b) / pgcd(a, b));
+	 unsigned int g;
+    
+    if (a == 0 || b == 0)
+    	return (0);
+    if (a > b)
+		g = a;
+	else
+		g = b;
+    while (1)
+    {
+        if ((g % a == 0) && (g % b == 0))
+            return (g);
+        g++;
+    }
 }
-
-int	main(int ac, char *av[])
+/*
+int	main()
 {
-	if (ac == 3)
-	{
-		printf("%d", pgcd(atoi(av[1]), atoi(av[2])));
-	}
-	printf("\n");
-	return (0);
+	printf("%d\n", lcm(-1, 2932));
 }
+*/

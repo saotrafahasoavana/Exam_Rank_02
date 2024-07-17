@@ -1,28 +1,23 @@
-// Passed Moulinette 2019.09.01
-
 #include <unistd.h>
 
-void	hidenp(char *probe, char *target)
+int	main(int ac, char *av[])
 {
-	while (*probe != '\0')
-	{
-		while (*probe != *target && *target != '\0')
-			++target;
-		if (*target == '\0')
-		{
-			write(1, "0", 1);
-			return;
-		}
-		++target;
-		++probe;
-	}
-	write(1, "1", 1);
-}
+	int	i = 0;
+	int	j = 0;
 
-int		main(int argc, char **argv)
-{
-	if (argc == 3)
-		hidenp(argv[1], argv[2]);
+	if (ac == 3)
+	{
+		while (av[1][i] && av[2][j])
+		{
+			if (av[1][i] == av[2][j])
+				i++;
+			j++;
+		}
+		if (av[1][i] == '\0')
+			write(1, "1", 1);
+		else
+			write(1, "0", 1);
+	}
 	write(1, "\n", 1);
 	return (0);
 }

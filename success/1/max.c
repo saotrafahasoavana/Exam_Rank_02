@@ -6,13 +6,13 @@
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:28:07 by saandria          #+#    #+#             */
-/*   Updated: 2024/06/12 10:30:29 by saandria         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:24:33 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	max(int* tab, unsigned int len)
 {
-	int	i;
+	unsigned int 	i;
 	int	res;
 
 	i = 0;
@@ -27,4 +27,11 @@ int	max(int* tab, unsigned int len)
 		}
 	}
 	return (res);
+}
+
+int	main()
+{
+	int	tab[5] = {1, 2, 3, 4, 5};
+
+	printf("%d\n", max(tab, 5));	
 }

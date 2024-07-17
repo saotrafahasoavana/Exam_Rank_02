@@ -5,57 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 22:12:30 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/04 22:12:33 by saandria         ###   ########.fr       */
+/*   Created: 2024/07/11 16:05:46 by saandria          #+#    #+#             */
+/*   Updated: 2024/07/11 16:16:40 by saandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int		is_prime(int n)
+int	isprime(int c)
 {
-	int i = 2;
+	int	i;
 
-	while (i < n)
+	i = 2;
+	while ( i < c / 2)
 	{
-		if (n % i == 0)
+		if (c % i == 0)
 			return (0);
-		++i;
+		i++;
 	}
 	return (1);
 }
 
-void	fprime(char *str)
+int	main(int ac, char *av[])
 {
-	int n = atoi(str);
-	int factor = 2;
-	int first = 1;
+	int	n;
+	int	factor;
+	int	first;
 
-	if (n == 1)
-		printf("1");
-
-	while (factor <= n)
+	first = 1;
+	if (ac == 2)
 	{
-		if (n % factor == 0 && is_prime(factor))
+		n = atoi(av[1]);
+		if (n == 1)
 		{
-			if (first == 1)
-				printf("%d", factor);
-			else
-				printf("*%d", factor);
-			first = 0;
-			n = n / factor;
+			printf("1\n");
+			return (0);
 		}
-		else
-			++factor;
+		factor = 2;
+		while (factor <= n)
+		{
+			if (n % factor == 0 && isprime(factor))
+			{
+				if (first == 1)
+					printf("%d", factor);
+				else
+					printf("*%d", factor);
+				first = 0;
+				n = n / factor;
+			}
+			else
+				factor++;
+		}
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-		fprime(argv[1]);
-
 	printf("\n");
 	return (0);
 }

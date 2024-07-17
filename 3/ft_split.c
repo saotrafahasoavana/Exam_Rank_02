@@ -1,70 +1,67 @@
 #include <stdlib.h>
+#include <stdio.h>
 
-int		ft_wordlen(char *str)
+char	*ft_strncpy(char *dest, char *src, int n)
 {
-	int i = 0;
-	while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-		i++;
-	return (i);
-}
+	int	i = 0;
 
-char	*word_dupe(char *str)
-{
-	int i = 0;
-	int len = ft_wordlen(str);
-	char *word = malloc(sizeof(char) * (len + 1));
-	word[len] = '\0';
-
-	while (i < len)
+	while (i < n && src[i])
 	{
-		word[i] = str[i];
+		dest[i] = src[i];
 		i++;
 	}
-	return (word);
+	dest[i] = '\0';
+	return (dest);
 }
 
-void	fill_words(char **array, char *str)
+char    **ft_split(char *str)
 {
-	int word_index = 0;
+	char	**split;
+	int	i = 0;
+	int	j = 0;
+	int	k = 0;
+	int	words = 0;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n')
-		str++;
-	while (*str != '\0')
+	while (str[i])
 	{
-		array[word_index] = word_dupe(str);
-		word_index++;
-		while (*str != '\0' && *str != ' ' && *str != '\t' && *str != '\n')
-			str++;
-		while (*str == ' ' || *str == '\t' || *str == '\n')
-			str++;
+		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
+			i++;
+		if (str[i])
+			words++;
+		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+			i++;
+	}
+	split = malloc(sizeof(char **) * (words + 1));
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
+			i++;
+		j = i;
+		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+			i++;
+		if (i > j)
+		{
+			split[k] = malloc(sizeof(char) * ((i - j) + 1));
+			ft_strncpy(split[k++], &str[j], i - j);
+			k++;
+		}
+	}
+	split[k] = NULL;
+	return (split);
+}
+/*
+int	main(void)
+{
+	char *s = "saotra	  Fahasoavana 	Andrinome ";
+	char **t = ft_split(s);
+	int	i = 0;
+
+	while (t[i])
+	{
+		printf("%s\n", t[i]);
+		i++;
 	}
 }
 
-int		count_words(char *str)
-{
-	int num_words = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n')
-		str++;
-	while (*str != '\0')
-	{
-		num_words++;
-		while (*str != '\0' && *str != ' ' && *str != '\t' && *str != '\n')
-			str++;
-		while (*str == ' ' || *str == '\t' || *str == '\n')
-			str++;
-	}
-	return (num_words);
-}
-
-char	**ft_split(char *str)
-{
-	int		num_words;
-	char	**array;
-
-	num_words = count_words(str);
-	array = malloc(sizeof(char *) * (num_words + 1));
-	array[num_words] = 0;
-
-	fill_words(array, str);
-	return (array);
-}
+*/

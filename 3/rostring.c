@@ -1,49 +1,51 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rostring.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: saandria <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 11:36:34 by saandria          #+#    #+#             */
-/*   Updated: 2024/07/05 11:37:51 by saandria         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 
-int main (int ac , char **av)
+void write_word(char *start, char *end)
 {
-	int i = 0;
-	int j;
+    while (start < end)
+    {
+        write(1, start, 1);
+        start++;
+    }
+}
 
-	if (ac >= 2)
-	{
-			while (av[1][i] && (av[1][i] == ' ' || av[1][i] == '\t'))
-				i++;
-			j = i;
-			while (av[1][i])
-			{
-				while (av[1][i] && (av[1][i] != ' ' && av[1][i] != '\t'))
-					i++;
-				while (av[1][i] && (av[1][i] == ' ' || av[1][i] == '\t'))
-					i++;
-				while (av[1][i] && (av[1][i] != ' ' && av[1][i] != '\t') && (av[1][i -1] == ' ' || av[1][i - 1] == '\t'))
-				{
-					while (av[1][i] && (av[1][i] != ' ' && av[1][i] != '\t'))
-					{
-						write (1, &av[1][i], 1);
-						i++;
-					}
-					write (1, " ", 1);
-					i++;
-				}
-			}
-			while (av[1][j] && (av[1][j] != ' ' && av[1][j] != '\t'))
-			{
-				write (1, &av[1][j], 1);
-				j++;
-			}
-	}
-	write (1, "\n", 1);
+int main(int argc, char **argv)
+{
+    char *str;
+    char *first_word_start;
+    char *first_word_end;
+    if (argc > 1)
+    {
+        str = argv[1];
+        while (*str == ' ' || *str == '\t')
+            str++;
+        first_word_start = str;
+        while (*str && *str != ' ' && *str != '\t')
+            str++;
+        first_word_end = str;
+        while (*str == ' ' || *str == '\t')
+            str++;
+        if (*str)
+		{
+            while (*str)
+            {
+                if (*str == ' ' || *str == '\t')
+                {
+                    while (*str == ' ' || *str == '\t')
+                        str++;
+                    if (*str)
+                        write(1, " ", 1);
+                }
+                else
+                {
+                    write(1, str, 1);
+                    str++;
+                }
+            }
+            write(1, " ", 1);
+        }
+        write_word(first_word_start, first_word_end);
+    }
+    write(1, "\n", 1);
+    return 0;
 }

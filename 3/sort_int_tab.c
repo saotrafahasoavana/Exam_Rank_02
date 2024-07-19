@@ -12,16 +12,16 @@ void	sort_int_tab(int *tab, unsigned int size)
 
 	while (swapped == 1)
 	{
-		i = 1;
+		i = 0;
 		swapped = 0;
 		while (i < size)
 		{
-			if (tab[i - 1] > tab[i])
+			if (tab[i] > tab[i + 1])
 			{
-				swap_values(&tab[i - 1], &tab[i]);
+				swap_values(&tab[i], &tab[i + 1]);
 				swapped = 1;
 			}
-			++i;
+			i++;
 		}
 	}
 }
